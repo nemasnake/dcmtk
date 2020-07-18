@@ -1922,6 +1922,10 @@ storeSCPCallback(
         outputFileNameArray.push_back(OFStandard::getFilenameFromPath(tmpStr, fileName));
       }
 
+      // delete all pixel data
+      // TODO: make this is a switch if in the case we want to allow pixel data
+      (*imageDataSet)->findAndDeleteElement(DCM_PixelData, true, true);       
+            
       // determine the transfer syntax which shall be used to write the information to the file
       E_TransferSyntax xfer = opt_writeTransferSyntax;
       if (xfer == EXS_Unknown) xfer = (*imageDataSet)->getOriginalXfer();
